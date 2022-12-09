@@ -21,15 +21,15 @@ const errorHandler: ErrorRequestHandler = async (error, req?, res?, next?) => {
   }
 
 
-  // Prisma error
-  if (error instanceof PrismaClient.PrismaClientKnownRequestError) {
+  // // Prisma error
+  // if (error instanceof PrismaClient.PrismaClientKnownRequestError) {
 
-    return res.status(500).json({
-      _type: types.DB_OPERATION,
-      detail: 'Unhandled error',
-      error: JSON.stringify(error),
-    });
-  }
+  //   return res.status(500).json({
+  //     _type: types.DB_OPERATION,
+  //     detail: 'Unhandled error',
+  //     error: JSON.stringify(error),
+  //   });
+  // }
 
   return res.status(500).json({
     _type: types.UNHANDLED_ERROR,

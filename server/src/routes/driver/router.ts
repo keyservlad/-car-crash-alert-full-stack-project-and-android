@@ -3,7 +3,7 @@ import * as controllers from './controllers';
 
 const router = Router();
 
-router.get('/players',controllers.players);
-router.get('/Oneplayer/:idPlayer',controllers.getOnePlayer);
+router.get('/users', controllers.users);
+router.get('/Oneuser/:idUser', controllers.getOneUser);
 
 export default router;
