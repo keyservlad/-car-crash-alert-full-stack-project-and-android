@@ -6,6 +6,7 @@ import cors  from 'cors';
 import { secrets } from './utils';
 import { errorHandler } from './utils/errors';
 import './config';
+import router from "./routes";
 
 const app = express()
 app.use(express.json())

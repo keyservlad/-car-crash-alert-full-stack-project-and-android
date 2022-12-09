@@ -1,5 +1,5 @@
 import { ErrorRequestHandler } from 'express';
-import { Prisma } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import SimpleError from './simple';
 
 const types = {
@@ -22,7 +22,7 @@ const errorHandler: ErrorRequestHandler = async (error, req?, res?, next?) => {
 
 
   // Prisma error
-  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+  if (error instanceof PrismaClient.PrismaClientKnownRequestError) {
 
     return res.status(500).json({
       _type: types.DB_OPERATION,
