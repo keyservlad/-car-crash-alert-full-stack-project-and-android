@@ -1,18 +1,25 @@
 
-import { PrismaClient, Collision } from '@prisma/client';
+import { PrismaClient, Collision, Users } from '@prisma/client';
 import { errorHandler } from '../../utils/errors';
 import prisma from '../../client';
 import { ICreateCollision } from './interfaces/ICreateCollision';
 
-export const _getAllCollision = async (): Promise<Collision[] | null> => {
-  const collision = await prisma.collision.findMany();
+export const _getAllCollision = async (): Promise<(Collision & {
+  user: Users;
+})[] | null> => {
+  const collision = await prisma.collision.findMany({include:{user:true}});
   return collision;
 };
 
-export const _getOneCollision = async (id: string): Promise<Collision | null> => {
+export const _getOneCollision = async (id: string): Promise<(Collision & {
+  user: Users;
+}) | null> => {
   const collision = await prisma.collision.findUnique({
     where: {
       id
+    },
+    include:{
+      user:true
     }
   });
   return collision;

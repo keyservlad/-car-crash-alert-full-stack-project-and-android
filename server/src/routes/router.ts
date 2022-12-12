@@ -1,6 +1,6 @@
 import  Router  from 'express';
-import { collisions } from './collision/controllers';
-import { users } from './driver/controllers';
+import users from './driver';
+import collisions from './collision';
 
 
 const router = Router();
