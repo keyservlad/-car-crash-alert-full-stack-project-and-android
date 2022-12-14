@@ -1,3 +1,7 @@
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password123
+POSTGRES_DB=collisionDatabase
+
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
 
@@ -6,7 +10,7 @@
 
 
 # Database rul used by ORM to connect to the database
-DATABASE_URL="postgresql://wxcvb:azert@localhost:5432/Test?schema=public"
+DATABASE_URL="postgresql://postgres:password123@localhost:6500/Test?collisionDatabase=public"
 
 
 # Port that the app will runs on
