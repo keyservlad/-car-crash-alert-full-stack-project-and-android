@@ -1,21 +1,18 @@
-import type { Handler } from 'express';
-import * as services from './services';
-import { Request } from 'express';
-import prisma from '../../client';
-import { comparePassword, hashPassword } from '../../utils/utils';
-
+import type { Handler } from "express";
+import * as services from "./services";
+import { Request } from "express";
+import prisma from "../../client";
+import { comparePassword, hashPassword } from "../../utils/utils";
 
 export const users: Handler = async (req: any, res) => {
-
   // Get all players
   const user = await services._getAllUser();
   // Return the response
   return res.status(200).json(user);
 };
 
-
 export const getOneUser: Handler = async (req: Request, res: any) => {
-  const { params } = req
+  const { params } = req;
   if (!params.idUser) return;
 
   // Get all players
@@ -25,10 +22,12 @@ export const getOneUser: Handler = async (req: Request, res: any) => {
 };
 
 export const createuser: Handler = async (req: Request, res: any) => {
-  const { body } = req
+  const { body } = req;
   if (!body.email || !body.password) return;
 
-  const userExists = await prisma.users.findFirst({ where: { email: body.email } });
+  const userExists = await prisma.users.findFirst({
+    where: { email: body.email },
+  });
 
   if (userExists) {
     // TODO throw Joi error if possible, assuming the above check is async
@@ -36,7 +35,6 @@ export const createuser: Handler = async (req: Request, res: any) => {
       message: "Email is already taken",
     });
   }
-
 
   // Get all players
   const user = await services.createUserService(prisma).createUser({
@@ -46,7 +44,7 @@ export const createuser: Handler = async (req: Request, res: any) => {
       password: await hashPassword(body.password),
       phone: body.phone,
       emergency_contact: body.emergency_contact,
-    }
+    },
   });
 
   // // Send the email
@@ -58,7 +56,7 @@ export const createuser: Handler = async (req: Request, res: any) => {
 };
 
 export const login: Handler = async (req: Request, res: any) => {
-  const { body } = req
+  const { body } = req;
   if (!body.email || !body.password) return;
 
   const user = await prisma.users.findFirst({ where: { email: body.email } });
@@ -76,7 +74,6 @@ export const login: Handler = async (req: Request, res: any) => {
       message: "Email or password is incorrect",
     });
   }
-
 
   // Return the response
   return res.status(200).json(user);

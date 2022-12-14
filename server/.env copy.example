@@ -14,7 +14,7 @@ DATABASE_URL="postgresql://postgres:password123@localhost:6500/Test?collisionDat
 
 
 # Port that the app will runs on
-PORT = "3000"
+PORT = "3001"
 
 # The node environtment ("development", "staging", "production")
 ENVIRONMENT = "development"
