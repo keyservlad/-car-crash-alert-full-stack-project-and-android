@@ -12,7 +12,8 @@
     "schema": "src/prisma/schema.prisma",
     "migrate:save": "npx prisma migrate dev",
     "generate": "npx prisma generate",
-    "seed": "ts-node --dir prisma --transpile-only seed"
+    "seed": "ts-node --dir prisma --transpile-only seed",
+    "db:push": "npx prisma db push"
   },
   "dependencies": {
     "@prisma/client": "^4.4.0",
