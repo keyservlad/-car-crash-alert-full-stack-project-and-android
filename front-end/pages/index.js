@@ -1,62 +1,27 @@
-import * as React from "react";
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
+import axios from "axios";
+import React from "react";
+import CollisionRows from "../components/Collisions/CollisionRows";
 
-export default function Home() {
-  const router = useRouter();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState("");
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const res = await signIn("credentials", {
-      email: email,
-      password: password,
-      callbackUrl: `${window.location.origin}/dashboard`,
-      redirect: false,
-    });
-    console.log(res);
-    if (res.error !== null) {
-      if (res.status === 401) {
-        setLoginError(
-          "Your username/password combination was incorrect. Please try again"
-        );
-      } else {
-        setLoginError(res.error);
-      }
-    } else {
-      router.push(res.url);
-    }
-  };
-
+const dashboard = ({ collisions }) => {
+  console.log(collisions);
   return (
-    <form onSubmit={handleLogin}>
-      <p>{loginError ?? <>Erreur : {loginError}</>}</p>
-      <label>
-        Email:{" "}
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:{" "}
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <button type="submit">Se connecter</button>
-
-      <Link href="/register">S'enregistrer</Link>
-    </form>
+    <div className="flex flex-col w-full h-full items-center justify-center">
+      <h1 className="my-10">Liste de toutes les collisions</h1>
+      <CollisionRows collisions={collisions} />
+    </div>
   );
+};
+
+export default dashboard;
+
+export async function getStaticProps() {
+  let collisions = await axios.get(
+    "http://localhost:3001/api_collision/collisions"
+  );
+  collisions = collisions.data;
+
+  return {
+    props: { collisions },
+    revalidate: 10,
+  };
 }

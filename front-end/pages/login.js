@@ -18,7 +18,7 @@ export default function Home() {
     const res = await signIn("credentials", {
       email: email,
       password: password,
-      callbackUrl: `${window.location.origin}/dashboard`,
+      callbackUrl: `${window.location.origin}`,
       redirect: false,
     });
     console.log(res);
@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form className="flex flex-col text-center m-auto mt-12 gap-3" onSubmit={handleLogin}>
       <p>{loginError ?? <>Erreur : {loginError}</>}</p>
       <label>
         Email:{" "}

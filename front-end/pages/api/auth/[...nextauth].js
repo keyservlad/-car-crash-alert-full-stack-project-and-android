@@ -2,8 +2,6 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import API from "../../../lib/api";
 
-let userAccount = null;
-
 const configuration = {
   cookie: {
     secure: process.env.NODE_ENV && process.env.NODE_ENV === "production",
@@ -12,6 +10,7 @@ const configuration = {
     jwt: true,
     maxAge: 30 * 24 * 60 * 60,
   },
+  secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -52,7 +51,7 @@ const configuration = {
       return session;
     },
 
-    debug: process.env.NODE_ENV === "development",
+    // debug: process.env.NODE_ENV === "development",
   },
 };
 export default (req, res) => NextAuth(req, res, configuration);

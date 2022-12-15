@@ -28,7 +28,7 @@ model Collision {
   longitude     String
   latitude      String
   adresse       String
-  dateCollision DateTime
+  dateCollision DateTime @default(now())
   sensorX       String
   sensorY       String
   sensorZ       String

@@ -14,6 +14,8 @@ export default function Register() {
   const [phone, setPhone] = useState("");
   const [emergency_contact, setEmergencyContact] = useState("");
 
+  const [errors, setErrors] = useState("");
+
   const registerUser = async (event) => {
     event.preventDefault();
 
@@ -24,27 +26,31 @@ export default function Register() {
       phone: phone,
       emergency_contact: emergency_contact,
     };
-
-    await api.post("/api/register", data);
+    try {
+      await api.post("/api/register", data);
+    } catch (error) {
+      setErrors("Erreur lors de la création de l'utilisateur");
+    }
+    
     signIn("credentials", {
       email,
       password,
-      callbackUrl: `${window.location.origin}/dashboard`,
+      callbackUrl: `${window.location.origin}`,
       redirect: false,
     })
       .then(function (result) {
         router.push(result.url);
       })
       .catch((err) => {
-        console.log("Failed to register: " + err.toString());
+        setErrors("Erreur lors de la création de l'utilisateur");
       });
   };
 
   return (
-    <>
-      <h1>S'inscrire</h1>
+    <div className="text-center">
+      <h1 className="my-5">S'inscrire</h1>
 
-      <form onSubmit={registerUser}>
+      <form className="flex flex-col gap-3" onSubmit={registerUser}>
         <label>
           Nom:{" "}
           <input
@@ -85,10 +91,11 @@ export default function Register() {
             onChange={(e) => setEmergencyContact(e.target.value)}
           />
         </label>
+        <p className="text-red-500">{errors ?? <>Erreur : {errors}</>}</p>
         <button type="submit">Créer un nouvel utilisateur</button>
 
         <Link href="/">Se connecter</Link>
       </form>
-    </>
+    </div>
   );
 }

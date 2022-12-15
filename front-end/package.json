@@ -9,14 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.5",
+    "@heroicons/react": "^1.0.6",
+    "@netlify/next": "^1.4.2",
     "@prisma/client": "4.7.1",
+    "@react-google-maps/api": "^2.17.1",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.2",
     "axios": "^1.2.1",
     "bcrypt": "^5.1.0",
     "express": "^4.18.2",
+    "google-map-react": "^2.2.0",
     "next": "13.0.6",
     "next-auth": "^4.10.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-geolocated": "^4.0.3",
+    "react-toastify": "^9.0.8",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/express": "^4.17.15",

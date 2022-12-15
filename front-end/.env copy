@@ -1,4 +1,7 @@
 NEXTAUTH_URL=http://localhost:3000
 SERVER_URL=http://localhost:3001
+AUTH_SECRET=superSecret
 
 NODE_ENV=development
+
+GOOGLE_MAPS_API_KEY="AIzaSyCDxjc-mxks0vC0PJy1-0rfJzvOm7mOYTM"
