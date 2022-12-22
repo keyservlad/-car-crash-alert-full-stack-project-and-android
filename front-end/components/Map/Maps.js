@@ -16,7 +16,7 @@ const Map = ({ lat, long, markers }) => {
   // const center1 = useMemo(() => ({ lat: -31.292038, lng: 151.118896 }), []);
 
   const onLoad = (marker) => {
-    console.log("marker: ", marker);
+    // console.log("marker: ", marker);
   };
 
   const options = {

@@ -16,7 +16,7 @@ docker-compose up ou docker-compose up -d pour lancer la bdd (port 6500)
 ## **COMMANDE npm run db:push** 
 Note: Pour push la database
 
-## **COMMANDE npx prima studio** 
+## **COMMANDE npx prisma studio** 
 Note: Pour visualiser la database et modifier directement
 
 ## **COMMANDE yarn generate**

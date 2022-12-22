@@ -5,7 +5,7 @@ import Collision from "../../components/Collisions/Collision";
 
 export default function ProductPage({ collision }) {
   const session = useSession();
-  console.log(session)
+  console.log(session);
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ export default function ProductPage({ collision }) {
             ? "Votre collision"
             : `Collision de ${collision.user.name}`}
         </h1>
-        <Collision collision={collision} />
+        <Collision collision={collision} isMap={true} />
       </div>
     </>
   );

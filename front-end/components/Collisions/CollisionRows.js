@@ -18,7 +18,7 @@ const CollisionRows = ({ collisions }) => {
             <Link
               href={`/collision/${collision.id}`}
               key={collision.id}
-              className="flex flex-col my-10 hover:shadow-sm"
+              className="flex flex-col my-10 hover:shadow-lg p-10"
             >
               <h1 className="text-2xl">Collision {i + 1}</h1>
               <Collision collision={collision} />

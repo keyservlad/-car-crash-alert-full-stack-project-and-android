@@ -30,8 +30,9 @@ export default function Register() {
       await api.post("/api/register", data);
     } catch (error) {
       setErrors("Erreur lors de la création de l'utilisateur");
+      return;
     }
-    
+
     signIn("credentials", {
       email,
       password,

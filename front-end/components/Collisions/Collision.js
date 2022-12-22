@@ -1,6 +1,9 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
-const Collision = ({ collision }) => {
+const ComponentName = dynamic(() => import("./CollisionsMap"), { ssr: false });
+
+const Collision = ({ collision, isMap }) => {
   return (
     <>
       <div className="flex justify-center flex-row gap-20">
@@ -26,6 +29,9 @@ const Collision = ({ collision }) => {
           </div>
           <div className="">{collision.detail}</div>
         </div>
+      </div>
+      <div className={`${isMap ?? "hidden"}`}>
+        <ComponentName collisions={[collision]} />
       </div>
     </>
   );
